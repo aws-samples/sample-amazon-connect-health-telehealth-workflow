@@ -1,0 +1,31 @@
+# Secrets / environment
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Private / preview SDK artifacts (never commit)
+*.whl
+*.zip
+*.tar.gz
+*.msi
+*.exe
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local demo recordings (the checked-in synthetic cache is kept)
+backend/demo_cache/*.local.json

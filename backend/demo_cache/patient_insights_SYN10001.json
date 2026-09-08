@@ -1,0 +1,114 @@
+{
+  "PatientSummaries": [
+    {
+      "PatientSummary": {
+        "JobId": "demo-SYN10001",
+        "SummaryType": "Pre-visit",
+        "PatientId": "SYN1000100000000000000000000000000000000000000000000000000000000",
+        "GeneratedAt": "2026-01-15T09:00:00.000000",
+        "Sections": [
+          {
+            "SectionName": "# PATIENT_AND_ENCOUNTER_OVERVIEW\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Overview\n",
+                "Evidence": []
+              },
+              {
+                "Text": "Jordan Rivera is a",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": " 57 yrs",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": " female presenting for",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": " a follow-up visit.",
+                "Evidence": []
+              }
+            ]
+          },
+          {
+            "SectionName": "# ACTIVE_PROBLEMS\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Active Problems\n",
+                "Evidence": []
+              },
+              {
+                "Text": "- Idiopathic gout of the right wrist (active)\n",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": "- Right wrist pain, recurrent\n",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": "- Hyperuricemia\n",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              }
+            ]
+          },
+          {
+            "SectionName": "# MEDICATIONS\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Medications\n",
+                "Evidence": []
+              },
+              {
+                "Text": "- Colchicine 0.6 mg oral tablet, once daily\n",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": "- Carvedilol 12.5 mg twice daily\n",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              }
+            ]
+          },
+          {
+            "SectionName": "# RECENT_RESULTS\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Recent Results\n",
+                "Evidence": []
+              },
+              {
+                "Text": "- Uric acid 9.6 mg/dL (elevated)\n",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": "- Right wrist radiograph: soft-tissue calcification noted\n",
+                "Evidence": [
+                  "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

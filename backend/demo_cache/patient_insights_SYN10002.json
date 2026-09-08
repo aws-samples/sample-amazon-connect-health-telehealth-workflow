@@ -1,0 +1,108 @@
+{
+  "PatientSummaries": [
+    {
+      "PatientSummary": {
+        "JobId": "demo-SYN10002",
+        "SummaryType": "Pre-visit",
+        "PatientId": "SYN1000200000000000000000000000000000000000000000000000000000000",
+        "GeneratedAt": "2026-01-15T09:00:00.000000",
+        "Sections": [
+          {
+            "SectionName": "# PATIENT_AND_ENCOUNTER_OVERVIEW\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Overview\n",
+                "Evidence": []
+              },
+              {
+                "Text": "Sam Patel is a",
+                "Evidence": [
+                  "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": " 40 yrs",
+                "Evidence": [
+                  "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": " male presenting for",
+                "Evidence": [
+                  "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": " a follow-up visit.",
+                "Evidence": []
+              }
+            ]
+          },
+          {
+            "SectionName": "# ACTIVE_PROBLEMS\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Active Problems\n",
+                "Evidence": []
+              },
+              {
+                "Text": "- Essential hypertension\n",
+                "Evidence": [
+                  "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": "- Hyperlipidemia\n",
+                "Evidence": [
+                  "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+                ]
+              }
+            ]
+          },
+          {
+            "SectionName": "# MEDICATIONS\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Medications\n",
+                "Evidence": []
+              },
+              {
+                "Text": "- Lisinopril 10 mg daily\n",
+                "Evidence": [
+                  "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": "- Atorvastatin 20 mg daily\n",
+                "Evidence": [
+                  "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+                ]
+              }
+            ]
+          },
+          {
+            "SectionName": "# RECENT_RESULTS\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Recent Results\n",
+                "Evidence": []
+              },
+              {
+                "Text": "- Home BP ~145/92 mmHg\n",
+                "Evidence": [
+                  "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": "- LDL 138 mg/dL\n",
+                "Evidence": [
+                  "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "PatientSummaries": [
+    {
+      "PatientSummary": {
+        "JobId": "demo-SYN10003",
+        "SummaryType": "Pre-visit",
+        "PatientId": "SYN1000300000000000000000000000000000000000000000000000000000000",
+        "GeneratedAt": "2026-01-15T09:00:00.000000",
+        "Sections": [
+          {
+            "SectionName": "# PATIENT_AND_ENCOUNTER_OVERVIEW\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Overview\n",
+                "Evidence": []
+              },
+              {
+                "Text": "Alex Nguyen is a",
+                "Evidence": [
+                  "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": " 35 yrs",
+                "Evidence": [
+                  "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": " female presenting for",
+                "Evidence": [
+                  "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+                ]
+              },
+              {
+                "Text": " a follow-up visit.",
+                "Evidence": []
+              }
+            ]
+          },
+          {
+            "SectionName": "# ACTIVE_PROBLEMS\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Active Problems\n",
+                "Evidence": []
+              },
+              {
+                "Text": "- Routine adult wellness visit\n",
+                "Evidence": [
+                  "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+                ]
+              }
+            ]
+          },
+          {
+            "SectionName": "# MEDICATIONS\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Medications\n",
+                "Evidence": []
+              },
+              {
+                "Text": "- No active medications\n",
+                "Evidence": [
+                  "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+                ]
+              }
+            ]
+          },
+          {
+            "SectionName": "# RECENT_RESULTS\n",
+            "ClinicalNarrative": [
+              {
+                "Text": "## Recent Results\n",
+                "Evidence": []
+              },
+              {
+                "Text": "- Labs within normal limits\n",
+                "Evidence": [
+                  "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

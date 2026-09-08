@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "patients": [
+    {
+      "id": "SYN1000100000000000000000000000000000000000000000000000000000000",
+      "name": "Jordan Rivera",
+      "given": "Jordan",
+      "family": "Rivera",
+      "gender": "Female",
+      "birthDate": "1968-04-12",
+      "age": "57 yrs",
+      "mrn": "SYN10001"
+    },
+    {
+      "id": "SYN1000200000000000000000000000000000000000000000000000000000000",
+      "name": "Sam Patel",
+      "given": "Sam",
+      "family": "Patel",
+      "gender": "Male",
+      "birthDate": "1985-09-30",
+      "age": "40 yrs",
+      "mrn": "SYN10002"
+    },
+    {
+      "id": "SYN1000300000000000000000000000000000000000000000000000000000000",
+      "name": "Alex Nguyen",
+      "given": "Alex",
+      "family": "Nguyen",
+      "gender": "Female",
+      "birthDate": "1990-02-18",
+      "age": "35 yrs",
+      "mrn": "SYN10003"
+    }
+  ],
+  "count": 3
+}

@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "patientStory": "[REF1]57-year-old female presenting for[/REF1] a follow-up visit. She carries diagnoses of [REF2]idiopathic gout of the right wrist[/REF2] and [REF3]recurrent right wrist pain[/REF3]. [REF4]Uric acid was elevated at 9.6 mg/dL[/REF4]. Colchicine was recently prescribed with a dosage adjustment for a drug interaction. All data in this sample is synthetic.",
+  "references": [
+    {
+      "id": "REF1",
+      "evidence": [
+        "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "REF2",
+      "evidence": [
+        "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "REF3",
+      "evidence": [
+        "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "REF4",
+      "evidence": [
+        "Patient/SYN1000100000000000000000000000000000000000000000000000000000000"
+      ]
+    }
+  ]
+}

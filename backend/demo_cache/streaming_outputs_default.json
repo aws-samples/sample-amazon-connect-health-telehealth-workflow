@@ -1,0 +1,110 @@
+{
+  "success": true,
+  "sessionId": "demo-session-001",
+  "outputs": {
+    "clinicalDoc": {
+      "ClinicalDocumentation": {
+        "Sections": [
+          {
+            "SectionName": "SUBJECTIVE",
+            "Summary": [
+              {
+                "SummarizedSegment": "Patient presents for follow-up of hypertension. Reports intermittent frontal headaches over two weeks, worse in the afternoon, with minimal relief from over-the-counter ibuprofen. Home blood pressure around 145/92 mmHg. Denies chest pain, visual changes, nausea, or vomiting."
+              }
+            ]
+          },
+          {
+            "SectionName": "OBJECTIVE",
+            "Summary": [
+              {
+                "SummarizedSegment": "Vitals: BP 142/90 mmHg, HR 78, Temp 98.6F, RR 16, SpO2 99% RA. Alert, no acute distress. Cardiovascular: regular rate and rhythm, no murmurs. Neuro: cranial nerves II-XII intact, no focal deficits."
+              }
+            ]
+          },
+          {
+            "SectionName": "ASSESSMENT",
+            "Summary": [
+              {
+                "SummarizedSegment": "1. Essential hypertension, suboptimally controlled. 2. Tension-type headache, likely related to blood pressure. 3. Hyperlipidemia, stable."
+              }
+            ]
+          },
+          {
+            "SectionName": "PLAN",
+            "Summary": [
+              {
+                "SummarizedSegment": "Increase lisinopril to 20 mg daily. Continue atorvastatin. Home BP log. Basic metabolic panel and lipid panel. Follow up in 4 weeks."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "medicalCodes": [
+      {
+        "name": "I10",
+        "system": "ICD-10-CM",
+        "description": "Essential (primary) hypertension",
+        "confidence": 0.98,
+        "evidence": [
+          "Home BP ~145/92; assessment of hypertension"
+        ]
+      },
+      {
+        "name": "E78.5",
+        "system": "ICD-10-CM",
+        "description": "Hyperlipidemia, unspecified",
+        "confidence": 0.91,
+        "evidence": [
+          "On atorvastatin; assessment of hyperlipidemia"
+        ]
+      },
+      {
+        "name": "G44.209",
+        "system": "ICD-10-CM",
+        "description": "Tension-type headache, unspecified",
+        "confidence": 0.84,
+        "evidence": [
+          "Frontal headaches, two weeks"
+        ]
+      }
+    ],
+    "afterVisitSummary": {
+      "AfterVisitSummary": [
+        {
+          "SummarizedSegment": "We discussed your blood pressure and headaches. Your lisinopril is being increased to 20 mg once daily. Please keep a home blood pressure log and return in 4 weeks. Call the clinic if headaches worsen or you develop chest pain or vision changes."
+        }
+      ]
+    },
+    "transcript": {
+      "Transcript": {
+        "TranscriptSegments": [
+          {
+            "ParticipantRole": "CLINICIAN",
+            "Content": "Good morning. How have your headaches been?",
+            "BeginAudioTime": 0.0,
+            "EndAudioTime": 3.2
+          },
+          {
+            "ParticipantRole": "PATIENT",
+            "Content": "Most afternoons, a dull ache in front.",
+            "BeginAudioTime": 3.5,
+            "EndAudioTime": 7.1
+          },
+          {
+            "ParticipantRole": "CLINICIAN",
+            "Content": "And your home blood pressure numbers?",
+            "BeginAudioTime": 7.4,
+            "EndAudioTime": 9.9
+          },
+          {
+            "ParticipantRole": "PATIENT",
+            "Content": "Around 145 over 92.",
+            "BeginAudioTime": 10.1,
+            "EndAudioTime": 12.0
+          }
+        ]
+      }
+    }
+  }
+}

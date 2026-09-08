@@ -1,0 +1,159 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Connect Health FHIR Query API",
+    "description": "Clinical intelligence queries against HealthLake for care manager population analytics",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/completed_appointments": {
+      "get": {
+        "operationId": "getCompletedAppointments",
+        "summary": "Get completed appointments for a given period",
+        "description": "Returns a list of patients who have completed appointments within the specified time period. Use this when the care manager asks about recent visits, completed consultations, or appointment history.",
+        "parameters": [
+          {
+            "name": "period_days",
+            "in": "query",
+            "required": false,
+            "description": "Number of days to look back. Default is 7 (one week).",
+            "schema": { "type": "integer", "default": 7 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of completed appointments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query_type": { "type": "string" },
+                    "results": { "type": "array", "items": { "type": "object" } },
+                    "count": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/needs_followup": {
+      "get": {
+        "operationId": "getPatientsNeedingFollowup",
+        "summary": "Get patients who need follow-up care",
+        "description": "Returns patients with booked or pending appointments who are due for follow-up. Use this when the care manager asks about pending visits, patients needing attention, or upcoming appointments.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of patients needing follow-up",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query_type": { "type": "string" },
+                    "results": { "type": "array", "items": { "type": "object" } },
+                    "count": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/no_shows": {
+      "get": {
+        "operationId": "getNoShowPatients",
+        "summary": "Get patients who missed appointments (no-shows)",
+        "description": "Returns patients who did not attend scheduled appointments in the given period. Use this when the care manager asks about missed visits, no-shows, or patients who need outreach.",
+        "parameters": [
+          {
+            "name": "period_days",
+            "in": "query",
+            "required": false,
+            "description": "Number of days to look back. Default is 30.",
+            "schema": { "type": "integer", "default": 30 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of no-show patients",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query_type": { "type": "string" },
+                    "results": { "type": "array", "items": { "type": "object" } },
+                    "count": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/diabetic_overdue_a1c": {
+      "get": {
+        "operationId": "getDiabeticPatientsOverdueA1C",
+        "summary": "Get diabetic patients with overdue A1C lab tests",
+        "description": "Returns patients with diabetes diagnosis who are overdue for HbA1c blood tests. Use this when the care manager asks about diabetes management, overdue labs, A1C tests, or chronic disease management gaps.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of diabetic patients overdue for A1C",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query_type": { "type": "string" },
+                    "results": { "type": "array", "items": { "type": "object" } },
+                    "count": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient_summary": {
+      "get": {
+        "operationId": "getPatientSummary",
+        "summary": "Get a summary for a specific patient by name",
+        "description": "Returns a detailed summary for a specific patient including demographics, conditions, and recent appointments. Use this when the care manager asks about a specific patient by name.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "Patient name or partial name to search for (e.g. 'Jordan Rivera', 'Jordan', 'Rivera')",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Patient summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query_type": { "type": "string" },
+                    "results": { "type": "array", "items": { "type": "object" } },
+                    "count": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

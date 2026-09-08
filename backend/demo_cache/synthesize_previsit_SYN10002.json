@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "patientStory": "[REF1]40-year-old male presenting for[/REF1] follow-up of [REF2]hypertension[/REF2] and [REF3]hyperlipidemia[/REF3]. [REF4]Home blood pressure readings around 145/92 mmHg[/REF4]. All data in this sample is synthetic.",
+  "references": [
+    {
+      "id": "REF1",
+      "evidence": [
+        "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "REF2",
+      "evidence": [
+        "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "REF3",
+      "evidence": [
+        "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "REF4",
+      "evidence": [
+        "Patient/SYN1000200000000000000000000000000000000000000000000000000000000"
+      ]
+    }
+  ]
+}

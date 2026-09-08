@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "patientStory": "[REF1]35-year-old female presenting for[/REF1] a [REF2]routine wellness visit[/REF2]. [REF3]No active problems[/REF3] and [REF4]labs within normal limits[/REF4]. All data in this sample is synthetic.",
+  "references": [
+    {
+      "id": "REF1",
+      "evidence": [
+        "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "REF2",
+      "evidence": [
+        "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "REF3",
+      "evidence": [
+        "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "REF4",
+      "evidence": [
+        "Patient/SYN1000300000000000000000000000000000000000000000000000000000000"
+      ]
+    }
+  ]
+}

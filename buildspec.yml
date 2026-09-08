@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - export REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
+      - export IMAGE_TAG=v${CODEBUILD_BUILD_NUMBER}
+
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t $REPOSITORY_URI:$IMAGE_TAG -f backend/Dockerfile .
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
+
+  post_build:
+    commands:
+      - echo Pushing image...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest
+      - echo Registering new ECS task definition...
+      - aws ecs describe-task-definition --task-definition patient-insights-backend-dev --query taskDefinition > /tmp/td.json
+      - python3 -c "import json,sys; td=json.load(open('/tmp/td.json')); [td.pop(k,None) for k in ['taskDefinitionArn','revision','status','requiresAttributes','placementConstraints','compatibilities','registeredAt','registeredBy']]; [c.update({'image':'$REPOSITORY_URI:$IMAGE_TAG'}) for c in td['containerDefinitions'] if c['name']=='patient-insights-backend']; json.dump(td,open('/tmp/new_td.json','w')); print('prepared')"
+      - NEW_ARN=$(aws ecs register-task-definition --cli-input-json file:///tmp/new_td.json --query taskDefinition.taskDefinitionArn --output text)
+      - echo New task def $NEW_ARN
+      - aws ecs update-service --cluster patient-insights-backend-dev --service patient-insights-backend-dev --task-definition $NEW_ARN --force-new-deployment --region $AWS_DEFAULT_REGION
+      - echo Done!
