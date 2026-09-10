@@ -2331,7 +2331,10 @@ def _invoke_classic(boto_session, session_id, input_text, body):
 
 
 if __name__ == '__main__':
-    mode_str = "DEMO MODE (cached S3 data)" if DEMO_MODE else "LIVE MODE (real API calls)"
+    # Demo data is selected PER REQUEST by the X-Demo-Mode header (see
+    # demo_mode.is_demo_request), not by this flag, so the banner cannot
+    # promise either mode. The UI defaults the header on for localhost.
+    mode_str = "demo_cache/ used when X-Demo-Mode: true is sent"
     print(f"""
 ╔══════════════════════════════════════════════════════════════╗
 ║         AWS Patient Insights Backend Proxy                   ║
@@ -2364,8 +2367,8 @@ if __name__ == '__main__':
 ║    SMS Number:  {SMS_ORIGINATION_NUMBER:<43} ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Usage:                                                      ║
-║    python server.py          # Live mode (real API)          ║
-║    python server.py --demo   # Demo mode (cached S3 data)    ║
+║    python server.py          # UI defaults to demo on        ║
+║      localhost; Ctrl+Shift+D toggles live AWS calls          ║
 ╚══════════════════════════════════════════════════════════════╝
     """)
     

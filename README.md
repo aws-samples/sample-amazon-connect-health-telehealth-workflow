@@ -40,7 +40,7 @@ pip install -r requirements.txt
 python3 server.py
 ```
 
-Then open <http://localhost:5000> in a browser.
+Then open <http://127.0.0.1:5000> in a browser.
 
 Everything is served from `backend/demo_cache/` (synthetic data). No AWS
 account, credentials, or Connect Health enablement required. Click through
