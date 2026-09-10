@@ -22,7 +22,14 @@
     // fails). An explicit choice stored in localStorage always wins, so
     // toggling it off on localhost is respected.
     var _demoPref = localStorage.getItem('demoMode');
-    var _isLocal = ['localhost', '127.0.0.1', '::1', ''].indexOf(hostname) !== -1;
+    // Hosts that mean "someone is running this locally". A colleague opening
+    // the demo by LAN IP or machine.local is still local, and must still get
+    // demo mode, otherwise the schedule renders empty against live AWS.
+    var _isLocal = ['localhost', '127.0.0.1', '::1', '0.0.0.0', ''].indexOf(hostname) !== -1
+        || /\.local$/i.test(hostname)
+        || /^10\./.test(hostname)
+        || /^192\.168\./.test(hostname)
+        || /^172\.(1[6-9]|2[0-9]|3[01])\./.test(hostname);
     window.DEMO_MODE = _demoPref === null ? _isLocal : _demoPref === 'true';
     
     window.demoHeaders = function(extra) {
@@ -116,14 +123,23 @@
     };
     
     let activeConfig;
-    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    if (_isLocal) {
         activeConfig = configs.local;
     } else {
         activeConfig = configs.deployed;
     }
-    
+
     window.WS_URL = activeConfig.WS_URL;
-    window.BACKEND_URL = activeConfig.BACKEND_URL;
+    // The backend serves this page in BOTH setups (Flask locally, the same
+    // container behind CloudFront when deployed), so the API is always on the
+    // page's own origin. Deriving it avoids two failure modes that produced a
+    // fully-rendered dashboard with zero patients:
+    //   - opening the app by LAN IP, machine.local or [::1] fell through to the
+    //     `deployed` branch and sent /api/* to a placeholder CloudFront domain
+    //   - opening it at 127.0.0.1 sent /api/* to localhost, a different origin,
+    //     making every call depend on CORS
+    // Set window.BACKEND_URL before this script to override.
+    window.BACKEND_URL = window.BACKEND_URL || window.location.origin;
     window.ENV_NAME = activeConfig.ENV_NAME;
     
     console.log('[Config] Environment:', activeConfig.ENV_NAME);
