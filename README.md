@@ -33,13 +33,17 @@ runs where.
 cd backend
 pip install -r requirements.txt
 python3 server.py
-# open http://localhost:5000, then press Ctrl+Shift+D to enable demo mode
+# open http://localhost:5000 — demo mode is on by default on localhost
 ```
 
 Everything is served from `backend/demo_cache/` (synthetic data). No AWS
 account, credentials, or Connect Health enablement required. Click through
 pre-call, during-call (SOAP note + transcript), post-call (coding), and the
 clinician workspace.
+
+A `DEMO MODE` badge is shown while it is active. Press `Ctrl+Shift+D` (or click
+the badge) to toggle it off and call live AWS services instead; the choice is
+remembered per browser.
 
 ## Architecture
 

@@ -182,8 +182,26 @@ def list_patients():
         for entry in bundle.get('entry', []):
             patient = entry['resource']
             name = patient.get('name', [{}])[0]
-            given = name.get('given', [''])[0] if name.get('given') else ''
+            # Join ALL given names so a middle name is not dropped (a patient
+            # stored as given ["Mary","Anne"] must not render as "Mary Johnson",
+            # which would then fail name lookups in the Care Intelligence tools).
+            given = ' '.join(name.get('given', [])) if name.get('given') else ''
             family = name.get('family', '')
+
+            # Demographics: home address + primary phone
+            addr = (patient.get('address') or [{}])[0]
+            phone = ''
+            for t in (patient.get('telecom') or []):
+                if t.get('system') == 'phone' and t.get('value'):
+                    phone = t['value']
+                    break
+            # Prefer a real MR identifier when present, else derive from the id
+            mrn = patient['id'][:8]
+            for ident in (patient.get('identifier') or []):
+                coding = (ident.get('type', {}).get('coding') or [{}])[0]
+                if coding.get('code') == 'MR' and ident.get('value'):
+                    mrn = ident['value']
+                    break
             
             # Calculate age from birthDate
             birth_date = patient.get('birthDate', '')
@@ -204,7 +222,11 @@ def list_patients():
                 'gender': patient.get('gender', '').capitalize(),
                 'birthDate': birth_date,
                 'age': age,
-                'mrn': patient['id'][:8]
+                'mrn': mrn,
+                'zip': addr.get('postalCode', ''),
+                'city': addr.get('city', ''),
+                'state': addr.get('state', ''),
+                'phone': phone
             })
         
         return jsonify({
@@ -2178,6 +2200,12 @@ def invoke_bedrock_agent():
     try:
         body = request.get_json(force=True)
         session_id = body.get('sessionId', 'default-session')
+        # AgentCore requires runtimeSessionId to be >= 33 characters and
+        # rejects shorter values before the request reaches the agent. Pad
+        # deterministically so any client is safe and multi-turn context
+        # (which is keyed on this id) stays stable across turns.
+        if len(session_id) < 33:
+            session_id = (session_id + '-' + session_id + '-agentcore-session-pad')[:48]
         input_text = body.get('inputText', '')
 
         if not input_text:

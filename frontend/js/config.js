@@ -16,7 +16,14 @@
     // ==========================================================================
     // DEMO MODE
     // ==========================================================================
-    window.DEMO_MODE = localStorage.getItem('demoMode') === 'true';
+    // Demo mode. On localhost there is usually no AWS account wired up, so
+    // default it ON: the README advertises a no-AWS local demo and without
+    // this the schedule renders empty on first run (the live HealthLake call
+    // fails). An explicit choice stored in localStorage always wins, so
+    // toggling it off on localhost is respected.
+    var _demoPref = localStorage.getItem('demoMode');
+    var _isLocal = ['localhost', '127.0.0.1', '::1', ''].indexOf(hostname) !== -1;
+    window.DEMO_MODE = _demoPref === null ? _isLocal : _demoPref === 'true';
     
     window.demoHeaders = function(extra) {
         const h = extra ? Object.assign({}, extra) : {};
@@ -29,6 +36,12 @@
         localStorage.setItem('demoMode', window.DEMO_MODE);
         _updateDemoBadge();
         console.log('[Demo] Mode:', window.DEMO_MODE ? 'ON' : 'OFF');
+        // The patient list and other page data are fetched once on page load,
+        // so the X-Demo-Mode header only affects LATER requests. Without a
+        // reload the schedule stays empty after enabling demo mode (the initial
+        // live call already failed). Reload so everything re-fetches in the
+        // newly selected mode.
+        window.location.reload();
     };
     
     function _updateDemoBadge() {

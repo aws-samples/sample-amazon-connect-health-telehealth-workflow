@@ -2,7 +2,7 @@
 // Calls Bedrock Agent via backend proxy /api/bedrock-agent/invoke
 
 const CONFIG = window.CARE_INTELLIGENCE_CONFIG;
-let sessionId = 'ci-' + Math.random().toString(36).substr(2, 8);
+let sessionId = 'ci-' + crypto.randomUUID();
 let isStreaming = false;
 
 document.getElementById('sessionIdDisplay').textContent = 'Session: ' + sessionId;
@@ -157,7 +157,7 @@ function autoResize(el) {
 }
 
 function clearChat() {
-    sessionId = 'ci-' + Math.random().toString(36).substr(2, 8);
+    sessionId = 'ci-' + crypto.randomUUID();
     document.getElementById('sessionIdDisplay').textContent = 'Session: ' + sessionId;
     const area = document.getElementById('messagesArea');
     area.innerHTML = '';

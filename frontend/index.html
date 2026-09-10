@@ -1351,7 +1351,11 @@
                 age: patient.age,
                 gender: patient.gender,
                 mrn: patient.mrn,
-                birthDate: patient.birthDate
+                birthDate: patient.birthDate,
+                zip: patient.zip,
+                city: patient.city,
+                state: patient.state,
+                phone: patient.phone
             };
             
             const card = document.createElement('div');
@@ -1370,6 +1374,10 @@
                         <span>${escapeHtml(patient.age || 'N/A')}</span>
                         <span class="separator">•</span>
                         <span>${escapeHtml(patient.gender || 'N/A')}</span>
+                        <span class="separator">•</span>
+                        <span>DOB: ${escapeHtml(patient.birthDate || 'N/A')}</span>
+                        <span class="separator">•</span>
+                        <span>ZIP: ${escapeHtml(patient.zip || 'N/A')}</span>
                         <span class="separator">•</span>
                         <span>MRN: ${escapeHtml(patient.mrn)}</span>
                     </div>

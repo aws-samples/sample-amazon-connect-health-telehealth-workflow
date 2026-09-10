@@ -46,11 +46,105 @@ def fhir_get(path, params):
 
 
 def patient_display(appt):
+    """Legacy: reads the denormalized actor.display string. Kept as a fallback.
+    Prefer resolve_patient_name(), which reads the authoritative Patient.name."""
     for p in appt.get("participant", []):
         actor = p.get("actor", {})
         if "Patient" in actor.get("reference", ""):
             return actor.get("display", "Unknown Patient")
     return "Unknown Patient"
+
+# id -> resolved name. Module scope so warm invocations reuse it.
+_PATIENT_NAME_CACHE = {}
+
+def fhir_read(resource_type, rid, cross_account=False):
+    """Read a single FHIR resource by id."""
+    creds, ds_id = get_creds(cross_account)
+    url = f"{HL_BASE}/datastore/{ds_id}/r4/{resource_type}/{rid}"
+    req_obj = AWSRequest(method="GET", url=url, headers={"Content-Type": "application/fhir+json"})
+    SigV4Auth(creds, "healthlake", REGION).add_auth(req_obj)
+    req = urllib.request.Request(url, headers=dict(req_obj.headers))
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return json.loads(r.read())
+    except Exception as e:
+        print(f"  fhir read ERROR [{resource_type}/{rid}]: {e}")
+        return {}
+
+def _name_of(patient_resource):
+    ns = patient_resource.get("name") or [{}]
+    n = ns[0] if ns else {}
+    return (" ".join(n.get("given", [])) + " " + n.get("family", "")).strip()
+
+def _norm_name(v):
+    """Casefold and strip accents so an unaccented query matches an accented name."""
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFKD", v or "")
+                   if not unicodedata.combining(c)).casefold().strip()
+
+def name_matches(query, full):
+    """Tolerant patient-name match.
+
+    Plain substring comparison fails on dropped middle names ("Mary Johnson" vs
+    a record stored as "Mary Anne Johnson") and on accents. Compare accent-folded
+    tokens instead: every token the caller supplied must appear in the stored
+    name, which also makes first-name-only and full-name queries work.
+    """
+    q = _norm_name(query).split()
+    f = _norm_name(full).split()
+    if not q or not f:
+        return False
+    if all(tok in f for tok in q):
+        return True
+    return len(q) >= 2 and q[0] == f[0] and q[-1] == f[-1]
+
+def find_patients_by_name(name, cross_account=False):
+    """Search for patients by name, tolerant of accents and middle names.
+
+    HealthLake's name index is accent-sensitive and rejects values containing a
+    space, so probe one token at a time (given name, then family name) and filter
+    the results with name_matches().
+    """
+    tokens = [t for t in (name or "").split() if t]
+    if not tokens:
+        return []
+    probes = []
+    for t in (tokens[0], tokens[-1]):
+        if t not in probes:
+            probes.append(t)
+    seen, matches = set(), []
+    for probe in probes:
+        for r in fhir_get("Patient", {"name": probe}, cross_account=cross_account):
+            rid = r.get("id")
+            if rid in seen:
+                continue
+            if name_matches(name, _name_of(r)):
+                seen.add(rid)
+                matches.append(r)
+        if matches:
+            break
+    return matches
+
+def resolve_patient_name(appt, cross_account=False):
+    """Authoritative patient name for an Appointment.
+
+    FHIR Reference.display is a denormalized convenience copy and goes stale (for
+    example after a patient rename), which silently shows the wrong identity in
+    care-manager views. Dereference actor.reference and read Patient.name
+    instead, falling back to actor.display only if the Patient is unreadable.
+    """
+    ref_id, display = None, "Unknown Patient"
+    for p in appt.get("participant", []):
+        actor = p.get("actor", {})
+        if "Patient" in actor.get("reference", ""):
+            ref_id = actor["reference"].split("/")[-1]
+            display = actor.get("display", "Unknown Patient")
+            break
+    if not ref_id:
+        return display
+    if ref_id not in _PATIENT_NAME_CACHE:
+        _PATIENT_NAME_CACHE[ref_id] = _name_of(fhir_read("Patient", ref_id, cross_account))
+    return _PATIENT_NAME_CACHE.get(ref_id) or display
 
 
 def sort_desc(resources, key="start", limit=10):
@@ -60,7 +154,7 @@ def sort_desc(resources, key="start", limit=10):
 def completed_appointments(params):
     resources = fhir_get("Appointment", {"status": "fulfilled"})
     top = sort_desc(resources, "start", 10)
-    results = [{"patient": patient_display(r), "date": r.get("start", "")[:10], "status": "Completed"} for r in top]
+    results = [{"patient": resolve_patient_name(r), "date": r.get("start", "")[:10], "status": "Completed"} for r in top]
     return {"query_type": "completed_appointments", "count": len(results),
             "description": f"Most recent {len(results)} completed appointments", "results": results}
 
@@ -68,7 +162,7 @@ def completed_appointments(params):
 def needs_followup(params):
     resources = fhir_get("Appointment", {"status": "booked"})
     top = sort_desc(resources, "start", 10)
-    results = [{"patient": patient_display(r), "date": r.get("start", "")[:10], "status": "Follow-up Needed"} for r in top]
+    results = [{"patient": resolve_patient_name(r), "date": r.get("start", "")[:10], "status": "Follow-up Needed"} for r in top]
     return {"query_type": "needs_followup", "count": len(results),
             "description": f"{len(results)} patients with pending appointments", "results": results}
 
@@ -76,7 +170,7 @@ def needs_followup(params):
 def no_shows(params):
     resources = fhir_get("Appointment", {"status": "noshow"})
     top = sort_desc(resources, "start", 10)
-    results = [{"patient": patient_display(r), "date": r.get("start", "")[:10], "status": "No-Show", "outreach_needed": True} for r in top]
+    results = [{"patient": resolve_patient_name(r), "date": r.get("start", "")[:10], "status": "No-Show", "outreach_needed": True} for r in top]
     return {"query_type": "no_shows", "count": len(results),
             "description": f"{len(results)} patients who missed appointments; outreach needed", "results": results}
 
@@ -102,16 +196,10 @@ def patient_summary(params):
     name = params.get("name", "")
     if not name:
         return {"error": "name required", "results": []}
-    first_name = name.split()[0] if " " in name else name
     results = []
-    for r in fhir_get("Patient", {"name": first_name})[:10]:
-        ns = r.get("name", [{}])
-        given = " ".join(ns[0].get("given", [])) if ns else ""
-        family = ns[0].get("family", "") if ns else ""
-        full = f"{given} {family}".strip()
-        if name.lower() in full.lower() or full.lower() in name.lower():
-            results.append({"name": full, "dob": r.get("birthDate", ""),
-                            "gender": r.get("gender", ""), "id": r.get("id", "")})
+    for r in find_patients_by_name(name)[:10]:
+        results.append({"name": _name_of(r), "dob": r.get("birthDate", ""),
+                        "gender": r.get("gender", ""), "id": r.get("id", "")})
     return {"query_type": "patient_summary", "search_name": name, "count": len(results), "results": results}
 
 

@@ -9,7 +9,11 @@
       "gender": "Female",
       "birthDate": "1968-04-12",
       "age": "57 yrs",
-      "mrn": "SYN10001"
+      "mrn": "SYN10001",
+      "zip": "02139",
+      "city": "Cambridge",
+      "state": "MA",
+      "phone": "+15550100101"
     },
     {
       "id": "SYN1000200000000000000000000000000000000000000000000000000000000",
@@ -19,7 +23,11 @@
       "gender": "Male",
       "birthDate": "1985-09-30",
       "age": "40 yrs",
-      "mrn": "SYN10002"
+      "mrn": "SYN10002",
+      "zip": "73301",
+      "city": "Austin",
+      "state": "TX",
+      "phone": "+15550100102"
     },
     {
       "id": "SYN1000300000000000000000000000000000000000000000000000000000000",
@@ -29,7 +37,11 @@
       "gender": "Female",
       "birthDate": "1990-02-18",
       "age": "35 yrs",
-      "mrn": "SYN10003"
+      "mrn": "SYN10003",
+      "zip": "97201",
+      "city": "Portland",
+      "state": "OR",
+      "phone": "+15550100103"
     }
   ],
   "count": 3
