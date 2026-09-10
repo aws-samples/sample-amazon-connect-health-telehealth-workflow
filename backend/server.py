@@ -2037,16 +2037,23 @@ def debug_transcript(session_id):
 # ACT 2 — Care Intelligence Workspace
 # ══════════════════════════════════════════════════════════════════════════════
 
+# Directory holding the Act 2 Care Intelligence UI. Resolved relative to this
+# module so it works both locally (<repo>/care-intelligence) and in the
+# container (/care-intelligence), mirroring static_folder='../frontend'.
+CARE_INTELLIGENCE_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), '..', 'care-intelligence'
+)
+
 @app.route('/care-intelligence', methods=['GET'])
 @app.route('/care-intelligence/', methods=['GET'])
 def serve_care_intelligence_index():
     """Serve the Act 2 Care Intelligence UI."""
-    return send_from_directory('/care-intelligence', 'index.html')
+    return send_from_directory(CARE_INTELLIGENCE_DIR, 'index.html')
 
 @app.route('/care-intelligence/<path:filename>', methods=['GET'])
 def serve_care_intelligence_static(filename):
     """Serve static assets for the Act 2 Care Intelligence UI."""
-    return send_from_directory('/care-intelligence', filename)
+    return send_from_directory(CARE_INTELLIGENCE_DIR, filename)
 
 
 
