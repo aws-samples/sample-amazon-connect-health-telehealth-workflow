@@ -29,21 +29,27 @@ runs where.
 
 ## Quick start — local demo (no AWS)
 
+Requires Python 3.9 or later.
+
 ```bash
-cd backend
+git clone https://github.com/aws-samples/sample-amazon-connect-health-telehealth-workflow.git
+cd sample-amazon-connect-health-telehealth-workflow/backend
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 python3 server.py
-# open http://localhost:5000 — demo mode is on by default on localhost
 ```
+
+Then open <http://localhost:5000> in a browser.
 
 Everything is served from `backend/demo_cache/` (synthetic data). No AWS
 account, credentials, or Connect Health enablement required. Click through
 pre-call, during-call (SOAP note + transcript), post-call (coding), and the
 clinician workspace.
 
-A `DEMO MODE` badge is shown while it is active. Press `Ctrl+Shift+D` (or click
-the badge) to toggle it off and call live AWS services instead; the choice is
-remembered per browser.
+Demo mode is on by default on localhost, and a `DEMO MODE` badge is shown while
+it is active. Press `Ctrl+Shift+D` (or click the badge) to toggle it off and
+call live AWS services instead; the choice is remembered per browser.
 
 ## Architecture
 
