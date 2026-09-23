@@ -67,14 +67,14 @@ Full description in **[docs/architecture-overview.md](docs/architecture-overview
 | Bridge Trigger | Python Lambda | Invoked by the Contact Flow to start the bridge |
 | fhir-query | Python Lambda | Care Intelligence action group; FHIR queries against HealthLake |
 | SMS Notification | Python Lambda | S3 event-driven after-visit SMS (optional) |
-| Custom Triage agent | Amazon Bedrock (AgentCore) | Worked example of extending the platform with your own agent |
+| Custom Pre-visit Intake agent | Amazon Bedrock (AgentCore) | Worked example of extending the platform with your own agent |
 | Clinical Data agent | Amazon Bedrock | Structured extraction from SOAP notes for FHIR write-back |
 
 ## Agents in the workflow
 
 Native Amazon Connect Health agents: Patient Verification, Appointment
 Management, Patient Insights, Ambient Documentation (Medical Scribe), Medical
-Coding. Custom Bedrock agents built in this sample: Triage and Clinical Data.
+Coding. Custom agents built in this sample: Pre-visit Intake and Clinical Data.
 See the capability matrix for which run locally, which are runnable now, and
 which require enablement.
 

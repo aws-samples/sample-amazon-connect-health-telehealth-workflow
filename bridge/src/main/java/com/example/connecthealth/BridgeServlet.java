@@ -24,7 +24,7 @@ import java.util.Map;
  *   "streamArn":      "arn:aws:kinesisvideo:...",
  *   "fragmentNumber": "12345678901281...",
  *   "domainId":       "dom-EXAMPLE13...",
- *   "patientId":      "0725e4075c0a604..."   (optional, for logging)
+ *   "patientId":      "SYN10001..."   (optional, for logging)
  * }
  *
  * Response: {"status":"started","sessionId":"<contactId>"}

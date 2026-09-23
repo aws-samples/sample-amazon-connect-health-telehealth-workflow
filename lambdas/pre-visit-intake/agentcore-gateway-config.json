@@ -1,0 +1,41 @@
+{
+  "_comment": "Reference configuration for the AgentCore Gateway + Lambda target that exposes verifyPatient as an MCP tool. Recreate in your own account. Replace <PLACEHOLDERS>. The JWT authorizer must trust your Connect instance's OIDC issuer, and allowedAudience must equal the gateway id. See docs/pre-visit-intake-runbook.md.",
+  "gateway": {
+    "name": "connect-previsit-mcp-gateway",
+    "protocolType": "MCP",
+    "protocolConfiguration": { "mcp": { "supportedVersions": ["2025-03-26"] } },
+    "roleArn": "arn:aws:iam::<ACCOUNT_ID>:role/<AgentCoreGatewayRole>",
+    "authorizerType": "CUSTOM_JWT",
+    "authorizerConfiguration": {
+      "customJWTAuthorizer": {
+        "discoveryUrl": "https://<your-instance>.my.connect.aws/.well-known/openid-configuration",
+        "allowedAudience": ["<GATEWAY_ID>"]
+      }
+    }
+  },
+  "target": {
+    "name": "verify-tools",
+    "credentialProviderConfigurations": [{ "credentialProviderType": "GATEWAY_IAM_ROLE" }],
+    "mcp": {
+      "lambda": {
+        "lambdaArn": "arn:aws:lambda:<REGION>:<ACCOUNT_ID>:function:<pre-visit-intake-lambda>",
+        "toolSchema": {
+          "inlinePayload": [
+            {
+              "name": "verifyPatient",
+              "description": "Verify a patient's identity by date of birth and ZIP code. Returns verified=true with patient_id, patient_name, and today's appointment on a match; verified=false otherwise. Call this before discussing any health information.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "dateOfBirth": { "type": "string", "description": "Patient date of birth in YYYY-MM-DD format" },
+                  "zipCode": { "type": "string", "description": "Patient 5-digit ZIP code" }
+                },
+                "required": ["dateOfBirth", "zipCode"]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -20,8 +20,8 @@ You can click through pre-call, during-call (SOAP + transcript), post-call
 
 ## Rung 2 — Wire the self-serviceable pieces (standard AWS account)
 
-Makes the GA / non-gated pieces live: the custom Triage agent, Clinical Data
-extraction, FHIR write-back, Care Intelligence population queries, and the
+Makes the GA / non-gated pieces live: the custom Pre-visit Intake agent, Clinical
+Data extraction, FHIR write-back, Care Intelligence population queries, and the
 workspace.
 
 **Prerequisites:** an AWS account with credentials and a region set, Amazon
@@ -30,7 +30,10 @@ Synthea FHIR data.
 
 1. `cp .env.example .env` and set `AWS_REGION`, `HEALTHLAKE_DATASTORE_ID`,
    `BEDROCK_MODEL_ID` / `BEDROCK_REGION`, and the S3 bucket variables.
-2. Deploy the `fhir-query` Lambda and the custom Triage agent (`setup-bedrock-agent.sh`).
+2. Deploy the `fhir-query` Lambda and the Care Intelligence Bedrock agent
+   (`setup-bedrock-agent.sh`, which creates `connect-health-care-intelligence`).
+   The custom Pre-visit Intake agent is set up separately, per
+   `docs/pre-visit-intake-runbook.md`; several of its steps are console-only.
 3. Run the backend without `--demo`, and toggle demo mode off in the UI.
 
 **Loading synthetic data:** generate a Synthea patient bundle and import it into

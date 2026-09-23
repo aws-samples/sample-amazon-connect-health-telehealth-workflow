@@ -1,0 +1,126 @@
+<mxfile host="app.diagrams.net" scale="1" border="0">
+  <diagram id="-u8ZYKMkDFoQUUzKVvB5" name="Figure 1 - Connect Health">
+    <mxGraphModel dx="1258" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-1" parent="1" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;html=1;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontSize=14;" value="Patient" vertex="1">
+          <mxGeometry height="60" width="60" x="40" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;align=left;spacingLeft=10;spacingTop=6;fontSize=18;labelBorderColor=none;" value="Pre-call" vertex="1">
+          <mxGeometry height="220" width="760" x="160" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-3" parent="1" style="sketch=0;html=1;fillColor=#E7157B;strokeColor=#FFFFFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.connect;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Amazon Connect&#xa;Contact Flow" vertex="1">
+          <mxGeometry height="70" width="70" x="200" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-4" parent="1" style="sketch=0;html=1;fillColor=#E7157B;strokeColor=#FFFFFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.connect;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Patient Verification Agent&#xa;(Amazon Connect Health)" vertex="1">
+          <mxGeometry height="70" width="70" x="370" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-5" parent="1" style="sketch=0;html=1;fillColor=#E7157B;strokeColor=light-dark(#feffff, #ededed);shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.connect;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Pre-visit Intake Agent&#xa;(Custom)" vertex="1">
+          <mxGeometry height="70" width="70" x="545" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-6" parent="1" style="sketch=0;html=1;fillColor=#E7157B;strokeColor=light-dark(#feffff, #ededed);shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.connect;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Appointment Management Agent&#xa;(Amazon Connect Health)" vertex="1">
+          <mxGeometry height="70" width="70" x="740" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-7" parent="1" style="text;fontStyle=3;fontColor=#5A5A5A;fontSize=9;align=center;whiteSpace=wrap;" value="custom agent (example of extending the platform)" vertex="1">
+          <mxGeometry height="30" width="100" x="540" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;align=left;spacingLeft=10;spacingTop=6;fontSize=18;" value="EHR system" vertex="1">
+          <mxGeometry height="150" width="300" x="1000" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-9" parent="1" style="sketch=0;html=1;fillColor=#C7A008;strokeColor=#FFFFFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.marketplace;verticalLabelPosition=bottom;verticalAlign=top;fontColor=#232F3E;fontStyle=1" value="Enterprise EHR&#xa;(FHIR R4)" vertex="1">
+          <mxGeometry height="70" width="70" x="1120" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;align=left;spacingLeft=10;spacingTop=6;fontSize=18;" value="During call" vertex="1">
+          <mxGeometry height="180" width="500" x="160" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-11" parent="1" style="sketch=0;html=1;fillColor=#E7157B;strokeColor=#FFFFFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.connect;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Patient Insights Agent&#xa;(Amazon Connect Health)" vertex="1">
+          <mxGeometry height="70" width="70" x="220" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-12" parent="1" style="sketch=0;html=1;fillColor=#E7157B;strokeColor=#FFFFFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.connect;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Ambient Documentation Agent&#xa;(Amazon Connect Health)" vertex="1">
+          <mxGeometry height="70" width="70" x="430" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;align=left;spacingLeft=10;spacingTop=6;fontSize=18;" value="Clinician workspace" vertex="1">
+          <mxGeometry height="180" width="300" x="40" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-14" parent="1" style="sketch=0;html=1;fillColor=#8C4FFF;strokeColor=#FFFFFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.connect;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Clinical Workspace&#xa;(third-party app)" vertex="1">
+          <mxGeometry height="70" width="70" x="140" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;align=left;spacingLeft=10;spacingTop=6;fontSize=18;" value="Post-call" vertex="1">
+          <mxGeometry height="180" width="560" x="380" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-16" parent="1" style="sketch=0;html=1;fillColor=#7AA116;strokeColor=none;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.simple_storage_service;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Clinical outputs&#xa;(Amazon S3)" vertex="1">
+          <mxGeometry height="70" width="70" x="430" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-17" parent="1" style="sketch=0;html=1;fillColor=#E7157B;strokeColor=#FFFFFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.connect;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Medical Coding Agent&#xa;(Amazon Connect Health)" vertex="1">
+          <mxGeometry height="70" width="70" x="610" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-18" parent="1" style="sketch=0;html=1;fillColor=#01A88D;strokeColor=#FFFFFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.bedrock;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="Clinical Data Agent&#xa;(Amazon Bedrock)" vertex="1">
+          <mxGeometry height="70" width="70" x="790" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;align=left;spacingLeft=10;spacingTop=6;fontSize=18;" value="Patient data" vertex="1">
+          <mxGeometry height="180" width="300" x="1000" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-20" parent="1" style="sketch=0;html=1;fillColor=#01A88D;strokeColor=#FFFFFF;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.healthlake;verticalLabelPosition=bottom;verticalAlign=top;fontStyle=1;fontColor=#232F3E" value="AWS HealthLake&#xa;(FHIR R4)" vertex="1">
+          <mxGeometry height="70" width="70" x="1120" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-21" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-1" style="endArrow=block;html=1;strokeColor=#232F3E" target="8f_wsoDbISeTOf8NwTO8-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-22" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-3" style="endArrow=block;html=1;strokeColor=#232F3E" target="8f_wsoDbISeTOf8NwTO8-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-23" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-4" style="endArrow=block;html=1;strokeColor=#232F3E" target="8f_wsoDbISeTOf8NwTO8-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-24" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-5" style="endArrow=block;html=1;strokeColor=#232F3E" target="8f_wsoDbISeTOf8NwTO8-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-25" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-6" style="endArrow=block;html=1;strokeColor=#D4A017;fontStyle=3;fontColor=#232F3E" target="8f_wsoDbISeTOf8NwTO8-9" value="Slot query + Appointment write">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-26" edge="1" parent="1" style="endArrow=block;html=1;strokeColor=#D4A017;fontStyle=3;fontColor=#232F3E" value="FHIR $match">
+          <mxGeometry relative="1" x="-0.2057" y="3" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="870" y="180" />
+            </Array>
+            <mxPoint x="1120" y="174.4666666666667" as="sourcePoint" />
+            <mxPoint x="440" y="183.5333333333333" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-27" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-6" style="endArrow=block;html=1;strokeColor=#232F3E;fontStyle=3" target="8f_wsoDbISeTOf8NwTO8-16" value="routes to queue">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-28" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-12" style="endArrow=block;html=1;strokeColor=#2E7D32;fontStyle=3;fontColor=#2E7D32" target="8f_wsoDbISeTOf8NwTO8-16" value="SOAP note + transcript">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-29" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-11" style="endArrow=block;html=1;strokeColor=#232F3E" target="8f_wsoDbISeTOf8NwTO8-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-30" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-16" style="endArrow=block;html=1;strokeColor=#232F3E" target="8f_wsoDbISeTOf8NwTO8-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-31" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-17" style="endArrow=block;html=1;strokeColor=#232F3E" target="8f_wsoDbISeTOf8NwTO8-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-32" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-18" style="endArrow=block;html=1;strokeColor=#2E7D32;fontStyle=1;fontColor=#2E7D32" target="8f_wsoDbISeTOf8NwTO8-20" value="Approve &amp; Sign: persist FHIR">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-33" edge="1" parent="1" source="8f_wsoDbISeTOf8NwTO8-16" style="endArrow=block;html=1;strokeColor=#2E7D32;fontStyle=3;fontColor=#2E7D32" target="8f_wsoDbISeTOf8NwTO8-14" value="SOAP + codes rendered">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-34" edge="1" parent="1" style="endArrow=block;html=1;strokeColor=#01A88D;fontStyle=3;fontColor=#01A88D" value="reads longitudinal FHIR">
+          <mxGeometry relative="1" x="-0.0989" y="-15" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="1120" y="680" as="sourcePoint" />
+            <mxPoint x="210" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8f_wsoDbISeTOf8NwTO8-36" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" value="" vertex="1">
+          <mxGeometry height="78" width="78" x="425" y="626" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

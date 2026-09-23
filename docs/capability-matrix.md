@@ -16,7 +16,7 @@ Health enablement.
 | Phase | Capability | In this sample | Production |
 |---|---|---|---|
 | Pre-call | Patient Verification | Demo-simulated (represented in the pre-call flow) | Connect Health Patient Verification Agent — requires enablement **+ EHR integration** |
-| Pre-call | **Triage** | **Runnable now** — custom Bedrock agent (AgentCore gateway → Lambda) | Your own custom agent (same code) |
+| Pre-call | **Pre-visit Intake** | **Runnable now** — custom agent, AgentCore gateway → Lambda (see `pre-visit-intake-runbook.md`; some setup is console-only) | Your own custom agent (same code) |
 | Pre-call | Appointment Management | Demo-simulated | Connect Health Appointment Management — requires enablement **+ EHR integration** |
 | During call | Patient Insights | Demo-simulated (cached pre-visit narrative) | Connect Health Patient Insights — requires enablement; reads HealthLake |
 | During call | Ambient Documentation (SOAP) | Demo-simulated (cached SOAP + transcript) | Connect Health Medical Scribe — requires enablement; live audio via the bridge |

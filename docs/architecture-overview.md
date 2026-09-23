@@ -35,8 +35,8 @@ Single AWS account. The workflow touches two FHIR R4 surfaces:
 - **Amazon Connect Health domain** — hosts the point-of-care agents (below).
 - **Backend API (Flask / ECS)** — orchestrates the agents, HealthLake, S3, and
   Bedrock via the SDK, and serves the clinician workspace.
-- **Amazon Bedrock** — the custom Triage agent (extensibility example) and the
-  Clinical Data agent (structured extraction for write-back).
+- **Amazon Bedrock** — the custom Pre-visit Intake agent (extensibility example)
+  and the Clinical Data agent (structured extraction for write-back).
 - **fhir-query Lambda** — the Care Intelligence action group; runs FHIR queries
   against the in-account HealthLake datastore.
 - **Amazon S3** — clinical outputs (SOAP notes, medical codes, streaming output).
@@ -55,8 +55,10 @@ Native Amazon Connect Health agents (domain-scoped):
 
 Custom Bedrock agents (built in this sample — the extensibility pattern):
 
-- **Triage agent** — worked example of extending the platform with your own
-  agent and tool (AgentCore gateway -> Lambda). Fully reproducible.
+- **Pre-visit Intake agent** — worked example of extending the platform with your
+  own agent and tool (AgentCore gateway -> Lambda). Captures the patient's stated
+  reason for the visit. It does not assess symptoms, assign urgency, give advice,
+  or route the encounter.
 - **Clinical Data agent** — on Approve & Sign, extracts structured Medications,
   Allergies, Observations, and Conditions for FHIR write-back.
 
@@ -68,8 +70,11 @@ invoking the live agent. See `capability-matrix.md`.
 ## End-to-end flow
 
 - **Pre-call:** patient calls -> Contact Flow -> Patient Verification (`$match`
-  against EHR) -> Triage (custom) -> Appointment Management (slot query + write
-  to EHR) -> routed to queue.
+  against EHR). On a scheduling call, Appointment Management queries slots and
+  writes the booking to the EHR. For a returning patient whose appointment is
+  already on file, the flow goes straight to Pre-visit Intake (custom), which
+  captures the stated reason for the visit. Either way the contact is then routed
+  to a queue; nothing routes on the Pre-visit Intake output.
 - **During call:** audio -> bridge -> Patient Insights (pre-visit narrative) +
   Ambient Documentation (SOAP note + transcript).
 - **Post-call:** SOAP + transcript -> S3 -> Medical Coding (ICD-10 / CPT) ->
