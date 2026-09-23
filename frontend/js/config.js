@@ -107,6 +107,13 @@
         officeNumber: '(555) 123-4567'        // front desk / office line
     };
 
+    // ==========================================================================
+    // AMAZON CONNECT CCP
+    // ==========================================================================
+    // Replace with your own Amazon Connect instance alias. This is the URL the
+    // embedded Contact Control Panel loads, so it must point at YOUR instance.
+    window.CONNECT_CCP_URL = 'https://your-instance-alias.my.connect.aws/ccp-v2';
+
     // Environment configurations
     // Update the 'deployed' block with your CloudFront distribution URLs after deployment.
     const configs = {
@@ -116,7 +123,7 @@
             ENV_NAME: 'local'
         },
         deployed: {
-            WS_URL: 'wss://ch-bridge-dev-421355715.us-east-1.elb.amazonaws.com/stream',
+            WS_URL: 'wss://your-bridge-alb-123456789.us-east-1.elb.amazonaws.com/stream',
             BACKEND_URL: 'https://d1exampleabcdef.cloudfront.net',
             ENV_NAME: 'deployed'
         }

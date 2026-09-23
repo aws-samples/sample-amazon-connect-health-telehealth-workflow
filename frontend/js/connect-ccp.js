@@ -246,7 +246,8 @@
             window.currentStreamingSessionId = contactData.contactId;
         }
     }
-    const CCP_URL = 'https://connect-health-demo-east.my.connect.aws/ccp-v2';
+    // Set window.CONNECT_CCP_URL in frontend/js/config.js to your own instance.
+    const CCP_URL = window.CONNECT_CCP_URL || 'https://your-instance-alias.my.connect.aws/ccp-v2';
     const BACKEND_URL = window.BACKEND_URL || 'http://localhost:5000';
     const TRANSCRIPT_POLL_INTERVAL_MS = 2000;
 
